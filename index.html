@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" >
+        <table id="chess-board">
+            
+        </table>
+        <form  onsubmit="movePiece(
+            document.getElementById('from-row').value,
+            document.getElementById('from-col').value,
+            document.getElementById('to-row').value,
+            document.getElementById('to-col').value
+            ); return false;">
+            <label for="from-row">From row:</label>
+            <input type="number" id="from-row" min="0" max="7">
+            <br>
+            <label for="from-col">From col:</label>
+            <input type="number" id="from-col" min="0" max="7">
+            <br>
+            <label for="to-row">To row:</label>
+            <input type="number" id="to-row" min="0" max="7">
+            <br>
+            <label for="to-col">To col:</label>
+            <input type="number" id="to-col" min="0" max="7">
+            <br>
+            <input type="submit" value="Move">
+        </form>
+
+    </div>
+</body>
+</html>
