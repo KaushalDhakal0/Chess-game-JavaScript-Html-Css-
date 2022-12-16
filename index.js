@@ -1,5 +1,5 @@
 // Set up the chess board using a two-dimensional array
-const board = [  ["R", "N", "B", "Q", "K", "B", "N", "R"],
+let board = [  ["R", "N", "B", "Q", "K", "B", "N", "R"],
   ["P", "P", "P", "P", "P", "P", "P", "P"],
   [" ", " ", " ", " ", " ", " ", " ", " "],
   [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -12,6 +12,7 @@ const board = [  ["R", "N", "B", "Q", "K", "B", "N", "R"],
 // Function to draw the board
 function drawBoard() {
   // Get a reference to the table element
+
   const table = document.getElementById("chess-board");
 
   // Loop through the board array and add a cell for each square
@@ -21,7 +22,10 @@ function drawBoard() {
       const td = document.createElement("td");
       // Add the piece image, if there is a piece on this square
       if (board[row][col] !== " ") {
-        td.innerHTML = `<img src='images/${board[row][col]}.png'>`;
+        td.innerHTML = `<img  style='background-color:red;height:50px' src='images/${board[row][col]}.png'>`;
+      }
+      else{
+        td.innerHTML="<div id='tableData' style='background-color:red;height:50px'></div>";
       }
       tr.appendChild(td);
     }
@@ -33,12 +37,16 @@ function drawBoard() {
 // Function to handle user input and move the pieces
 function movePiece(fromRow, fromCol, toRow, toCol) {
   // Make sure the move is legal
-  if (!isLegalMove(fromRow, fromCol, toRow, toCol)) {
+  if (!!isLegalMove(fromRow, fromCol, toRow, toCol)) {
     // Update the board array to reflect the move
     board[toRow][toCol] = board[fromRow][fromCol];
     board[fromRow][fromCol] = " ";
     //
 // Redraw the board to reflect the move
+    // let element = document.getElementById("container");
+    // element.remove();
+    // var gfg_down =document.getElementById("chess-board");
+    // gfg_down.parentNode.removeChild(gfg_down);
     drawBoard();
     } else {
         // Show an error message if the move is not legal
@@ -49,6 +57,7 @@ function movePiece(fromRow, fromCol, toRow, toCol) {
 // Function to check if a move is legal
 function isLegalMove(fromRow, fromCol, toRow, toCol) {
   // Check if the destination square is empty or contains an enemy piece
+//   console.log(isEnemyPiece(board[fromRow][fromCol], board[toRow][toCol]));
   if (board[toRow][toCol] === " " || isEnemyPiece(board[fromRow][fromCol], board[toRow][toCol])) {
     // Check the specific rules for each piece
     switch (board[fromRow][fromCol]) {
@@ -74,6 +83,7 @@ function isLegalMove(fromRow, fromCol, toRow, toCol) {
 
 // Functions to check the specific rules for each piece's moves
 function isLegalPawnMove(fromRow, fromCol, toRow, toCol) {
+    return true;
   // ...
 }
 

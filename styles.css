@@ -1,0 +1,16 @@
+
+body{
+    overflow-y: scroll;
+}
+.container{
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    align-items: center;
+    justify-content: center;
+    height: 40vw;
+    margin-top: 100px;
+    margin-left: 10vw;
+    /* overflow-y: scroll; */
+}
