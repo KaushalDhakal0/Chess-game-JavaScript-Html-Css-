@@ -37,7 +37,7 @@ function drawBoard() {
 // Function to handle user input and move the pieces
 function movePiece(fromRow, fromCol, toRow, toCol) {
   // Make sure the move is legal
-  if (!!isLegalMove(fromRow, fromCol, toRow, toCol)) {
+  if (!isLegalMove(fromRow, fromCol, toRow, toCol)) {
     // Update the board array to reflect the move
     board[toRow][toCol] = board[fromRow][fromCol];
     board[fromRow][fromCol] = " ";
@@ -83,12 +83,36 @@ function isLegalMove(fromRow, fromCol, toRow, toCol) {
 
 // Functions to check the specific rules for each piece's moves
 function isLegalPawnMove(fromRow, fromCol, toRow, toCol) {
+    // Pawns can only move forward, not backward
+  if (fromRow > toRow) {
+    return false;
+  }
+
+  // Pawns can move forward one square if that square is unoccupied
+  if (fromRow + 1 === toRow && fromCol === toCol) {
     return true;
+  }
+
+  // Pawns can move forward two squares on their first move if both squares are unoccupied
+  if (fromRow === 1 && toRow === 3 && fromCol === toCol) {
+    return true;
+  }
+
+  // Pawns can capture pieces on adjacent squares diagonally in front of them
+  if (Math.abs(fromCol - toCol) === 1 && fromRow + 1 === toRow) {
+    return true;
+  }
+
+  return false;
   // ...
 }
 
 function isLegalRookMove(fromRow, fromCol, toRow, toCol) {
-  // ...
+  // Rooks can move horizontally or vertically any number of squares as long as the path is unobstructed
+  if (fromRow === toRow || fromCol === toCol) {
+    return true;
+  }
+  return false;
 }
 
 function isLegalKnightMove(fromRow, fromCol, toRow, toCol) {
