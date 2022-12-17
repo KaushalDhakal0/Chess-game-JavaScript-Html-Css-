@@ -116,18 +116,41 @@ function isLegalRookMove(fromRow, fromCol, toRow, toCol) {
 }
 
 function isLegalKnightMove(fromRow, fromCol, toRow, toCol) {
+  // Knights move in an "L" shape, two squares horizontally and one square vertically, or two squares vertically and one square horizontally
+  if (Math.abs(fromRow - toRow) === 2 && Math.abs(fromCol - toCol) === 1) {
+    return true;
+  }
+  if (Math.abs(fromRow - toRow) === 1 && Math.abs(fromCol - toCol) === 2) {
+    return true;
+  }
+  return false;
   // ...
 }
 
 function isLegalBishopMove(fromRow, fromCol, toRow, toCol) {
+  // Bishops can move diagonally any number of squares as long as the path is unobstructed
+  if (Math.abs(fromRow - toRow) === Math.abs(fromCol - toCol)) {
+    return true;
+  }
+  return false;
   // ...
 }
 
 function isLegalQueenMove(fromRow, fromCol, toRow, toCol) {
-  // ...
+  // Queens can move horizontally, vertically, or diagonally any number of squares as long as the path is unobstructed
+  if (fromRow === toRow || fromCol === toCol || Math.abs(fromRow - toRow) === Math.abs(fromCol - toCol)) {
+    return true;
+  }
+  return false;
 }
+  // ...
 
 function isLegalKingMove(fromRow, fromCol, toRow, toCol) {
+  // Kings can move one square in any direction
+  if (Math.abs(fromRow - toRow) <= 1 && Math.abs(fromCol - toCol) <= 1) {
+    return true;
+  }
+  return false;
   // ...
 }
 
